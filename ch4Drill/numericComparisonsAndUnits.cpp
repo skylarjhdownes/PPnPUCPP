@@ -43,8 +43,8 @@ int main()
   double smallNumber = DBL_MAX;
   double inputNumber;
   string unitOfMeasure;
-  int numberOfInputs = 0;
   double sumOfInputs = 0;
+  vector<double> inputsInMeters;
   
   while (cin >> inputNumber && cin >> unitOfMeasure){
     if (unitOfMeasure == "cm" || unitOfMeasure == "in" || unitOfMeasure == "ft" || unitOfMeasure == "m"){
@@ -68,17 +68,23 @@ int main()
         largeNumber = inputNumber;
         cout << "largest so far\n";
       }
-      numberOfInputs++;
+      inputsInMeters.push_back(inputNumber);
       sumOfInputs += inputNumber;
     }
     else {
       cout << "Bad input.\n";
     }
   }
+
+  sort(inputsInMeters);
   
   cout << "Smallest value: " << smallNumber << "m\n";
   cout << "Largest value: " << largeNumber << "m\n";
-  cout << "There were " << numberOfInputs << " inputs for a total of " << sumOfInputs << " meters.";
+  cout << "There were " << inputsInMeters.size() << " inputs for a total of " << sumOfInputs << " meters.\n";
+  cout << "Full list of inputs: \n";
+  for (double x : inputsInMeters) {
+    cout << x << " ";
+  } 
   
   return 0;
 }
